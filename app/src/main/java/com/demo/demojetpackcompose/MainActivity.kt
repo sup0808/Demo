@@ -15,74 +15,20 @@ import androidx.compose.runtime.remember
 
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
+import com.demo.demojetpackcompose.screens.QuoteDetails
+import com.demo.demojetpackcompose.screens.QuoteListItem
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            var count : MutableState<Int>  = remember {mutableStateOf(0)}
-        Column(verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-            Tetsing(count)
-        }
+            Column() {
+                QuoteDetails()
+            }
 
         }
     }
-
-    @Composable
-    fun Tetsing(count: MutableState<Int>) {
-        var count : MutableState<Int>  = remember {mutableStateOf(0)}
-        Column(verticalArrangement = Arrangement.Center) {
-
-                Log.d("Tagged", " Log duriong intial compistion") }
-            Text(text ="Notification Counter --- "+count.value)
-            Button(onClick = {
-                count.value++;
-            }) {
-                Text(text ="Send Notification")
-                Log.d("Tagged", " Button click "+count.value)
-            }
-        }
-
-
-    }
-
-    @Composable
-    fun listViewItem(){
-        var count : MutableState<Int>  = remember {mutableStateOf(0)}
-
-        Row {
-            Column(verticalArrangement = Arrangement.Center) {
-
-                Log.d("Tagged", " Log duriong intial compistion") }
-            Text(text ="Notification Counter --- "+count.value.toString())
-            Button(onClick = {
-                count.value++;
-            }) {
-                Text(text ="Send Notification"+count.toString())
-                Log.d("Tagged", " Button click "+count.toString())
-            }
-        }
-        }
-
-
-
-    @Preview(showBackground = true, widthDp = 300, heightDp = 300)
-    @Composable
-    fun previewFunction() {
-        Column(
-
-
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("supriya")
-            Text("mdmcm")
-
-        }
-
-
 
 
 }
