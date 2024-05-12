@@ -3,6 +3,7 @@ package com.demo.demojetpackcompose.screens
 import android.graphics.Paint.Style
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -22,14 +23,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.demo.demojetpackcompose.models.Quote
 
 //@Preview
 @Composable
-fun QuoteListItem() {
+fun QuoteListItem(quote: Quote, onClick : (quote : Quote) -> Unit) {
 
     Card(
         elevation = 4.dp,
         modifier = Modifier.padding(8.dp)
+            .clickable { onClick(quote) },
     ) {
         Row(modifier = Modifier.padding(16.dp)) {
             Image(
@@ -47,7 +50,7 @@ fun QuoteListItem() {
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "This is most valuable thing that man can spend.",
+                    text = quote.text,
                     style = MaterialTheme.typography.body2,
                     modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
                 )
@@ -59,7 +62,7 @@ fun QuoteListItem() {
                         .height(1.dp)
                 )
                 Text(
-                    text = "Supriya Gupta",
+                    text = quote.author,
                     style = MaterialTheme.typography.body2,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
@@ -71,47 +74,3 @@ fun QuoteListItem() {
     }
 }
 
-@Preview
-@Composable
-fun QuoteDetails() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize(1f)
-            .background(
-                Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFFEEEEEE),
-                        Color(0xFFE3E3E3)
-                    )
-                )
-            )
-    ) {
-        Card(
-            elevation = 8.dp,
-            modifier = Modifier.padding(32.dp)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.align(Alignment.Center)
-                    .padding(30.dp,24.dp)
-            ) {
-
-                Image(imageVector = Icons.Filled.Favorite, contentDescription = "Quote Details")
-                Text(
-                    text = "This is most valuable thing that man can spend.",
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
-                )
-                Text(
-                    text = "This is most valuable thing that man can spend.",
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 8.dp)
-                )
-
-            }
-        }
-
-    }
-
-}
