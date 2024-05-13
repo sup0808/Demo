@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.demo.demojetpackcompose.ui.theme.DemoJetpackComposeTheme
+import com.demo.demojetpackcompose.ui.theme.TimerScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -22,8 +23,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            //Counter()
-            LaunchedEffectExample()
+            //Counter() //S
+           // LaunchedEffectExample()
+            TimerScreen()
         }
 
     }
