@@ -37,11 +37,17 @@ class MainActivity : ComponentActivity() {
         // Use SideEffect to log the current value of count
         SideEffect {
             // Called on every recomposition
-            Log.d("Count is ${count.value}","")
+            Log.d("Outer Count is ${count.value}","")
         }
 
         Column {
             Button(onClick = { count.value++ }) {
+                // Use SideEffect to log the current value of count
+                SideEffect {
+                    // Called on every recomposition
+                    Log.d("Inner Count is ${count.value}","")
+                }
+
                 // This recomposition doesn't trigger the outer side effect
                 // every time button has been tapped
                 Text("Increase Count ${count.value}")
