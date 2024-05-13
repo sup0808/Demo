@@ -26,7 +26,9 @@ class MainActivity : ComponentActivity() {
             //Counter() //S
            // LaunchedEffectExample()
             //TimerScreen()
-            ProduceStateExample()
+            //ProduceStateExample()
+           // LaunchedEffefectComposable()
+            remeberCoroutineExample()
         }
 
     }
