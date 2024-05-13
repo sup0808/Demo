@@ -2,19 +2,15 @@ package com.demo.demojetpackcompose
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import kotlinx.coroutines.delay
 
 @Composable
 fun ProduceStateExample() {
-    val state = remember { mutableStateOf(0) }
-    LaunchedEffect(key1 = Unit) {
+    val state = produceState(initialValue = 0 ){
         for (i in 1..10) {
             delay(1000)
-            state.value++
+            value++
         }
     }
 
