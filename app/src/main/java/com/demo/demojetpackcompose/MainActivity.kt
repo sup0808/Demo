@@ -8,11 +8,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.demo.demojetpackcompose.ui.theme.DemoJetpackComposeTheme
@@ -23,9 +22,38 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App()
+            Counter()
         }
     }
+
+
+
+    //Side Effect Demo
+    @Composable
+    fun Counter() {
+        // Define a state variable for the count
+        val count = remember { mutableStateOf(0) }
+
+        // Use SideEffect to log the current value of count
+        SideEffect {
+            // Called on every recomposition
+            Log.d("Count is ::: ${count.value}","" )
+        }
+
+        Column {
+            Button(onClick = { count.value++ }) {
+                Text("Increase Count")
+            }
+
+            // With every state update, text is changed and recomposition is triggered
+            Text("Counter ${count.value}")
+        }
+    }
+
+    fun fetchCategories() : List<String> {
+        return listOf("One", "Two", "Third")
+    }
+
 
 
     @Composable
