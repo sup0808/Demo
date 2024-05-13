@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             //Counter() //S
            // LaunchedEffectExample()
-            TimerScreen()
+            //TimerScreen()
+            ProduceStateExample()
         }
 
     }
