@@ -1,30 +1,22 @@
 package com.demo.demojetpackcompose
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.demo.demojetpackcompose.screens.QuoteDetails
-import com.demo.demojetpackcompose.screens.QuoteListItem
-import com.demo.demojetpackcompose.screens.QuoteListScreen
+
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        DataManger.loadQuoteFromFile(this)
-        System.out.println("Data loaded :: "+ DataManger.data.size)
 
         setContent {
             App()
@@ -33,32 +25,44 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun App(){
-        if(DataManger.isDataLoaded.value){
-        if(DataManger.currentPage.value == Pages.LISTING){
-                QuoteListScreen(data = DataManger.data) {
-                    DataManger.switchPage(it)
-                }
+    fun App() {
+        val navController = rememberNavController()
+        NavHost(navController = navController, startDestination = "registartion") {
+            composable(route = "registartion") {
+                registarationScreen(navController)
             }
-            else{
-                DataManger.currentQuote?.let { QuoteDetails(quote = it) }
+            composable(route = "login") {
+                loginScreen()
             }
-        }
-       else{
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxSize(1f)
-            ){
-                Text(text = "Loading....",
-                style = MaterialTheme.typography.h6)
+            composable(route = "main") {
+                mainScreen()
             }
+            // Add more destinations similarly.
         }
     }
 
 
+    @Composable
+    fun registarationScreen(navController: NavHostController) {
+        Text(text = "Registration", style = MaterialTheme.typography.h1,
+            modifier = Modifier.clickable {
+                navController.navigate("main")
+            })
+    }
+
+    @Composable
+    fun loginScreen() {
+        Text(text = "Login", style = MaterialTheme.typography.h1)
+    }
+
+    @Composable
+    fun mainScreen() {
+        Text(text = "Main", style = MaterialTheme.typography.h1)
+    }
+
 }
-enum class Pages{
-    LISTING,
-    DETAIL
-}
+
+
+
+
 
