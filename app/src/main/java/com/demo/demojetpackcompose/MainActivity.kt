@@ -29,7 +29,9 @@ class MainActivity : ComponentActivity() {
         val navController = rememberNavController()
         NavHost(navController = navController, startDestination = "registartion") {
             composable(route = "registartion") {
-                registarationScreen(navController)
+                registarationScreen{
+                    navController.navigate("main")
+                }
             }
             composable(route = "login") {
                 loginScreen()
@@ -43,10 +45,10 @@ class MainActivity : ComponentActivity() {
 
 
     @Composable
-    fun registarationScreen(navController: NavHostController) {
+    fun registarationScreen(onClick : ()->Unit) {
         Text(text = "Registration", style = MaterialTheme.typography.h1,
             modifier = Modifier.clickable {
-                navController.navigate("main")
+                onClick()
             })
     }
 
